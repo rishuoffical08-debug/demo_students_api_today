@@ -1,7 +1,6 @@
 import 'package:demo_students_apis/student_model.dart';
 import 'package:demo_students_apis/update_screen.dart';
 import 'package:flutter/material.dart';
-
 import 'all_students_screen.dart';
 import 'api_service.dart';
 
@@ -13,10 +12,11 @@ class AddScreen extends StatefulWidget {
 }
 
 class _AddScreenState extends State<AddScreen> {
-  ApiService apiService=ApiService();
+  ApiService apiService = ApiService();
 
   @override
   Widget build(BuildContext context) {
+
     TextEditingController nameController = TextEditingController();
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
@@ -107,23 +107,36 @@ class _AddScreenState extends State<AddScreen> {
               SizedBox(height: 20),
 
               ElevatedButton(
-                onPressed: () async{
-
-                final student=StudentModel(name: nameController.text, email: emailController.text, password: passwordController.text, phone:int.parse( phoneController.text), address: addressedController.text);
-                final add =await apiService.addStudent(student);
-setState(() {
-  add;
-
-});                },
+                onPressed: () async {
+                  final student = StudentModel(
+                    name: nameController.text,
+                    email: emailController.text,
+                    password: passwordController.text,
+                    phone: int.parse(phoneController.text),
+                    address: addressedController.text,
+                  );
+                  final add = await apiService.addStudent(student);
+                  setState(() {
+                    add;
+                  });
+                },
                 child: Text(
                   "Add Infromation",
                   style: TextStyle(color: Colors.black),
                 ),
               ),
 
-              ElevatedButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => UpdateScreen(name: "Raman")));
-              }, child: Text("send"))
+              ElevatedButton(
+                  onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => UpdateScreen(name: "Rishu"),
+                    ),
+                  );
+                },
+                child: Text("send"),
+              ),
             ],
           ),
         ),
@@ -131,3 +144,4 @@ setState(() {
     );
   }
 }
+//////

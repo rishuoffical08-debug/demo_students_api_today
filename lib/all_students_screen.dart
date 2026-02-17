@@ -1,5 +1,6 @@
 import 'package:demo_students_apis/api_service.dart';
 import 'package:demo_students_apis/student_model.dart';
+import 'package:demo_students_apis/student_update_screen.dart';
 import 'package:flutter/material.dart';
 
 class AllStudentsScreen extends StatefulWidget {
@@ -39,17 +40,33 @@ class _AllStudentsScreenState extends State<AllStudentsScreen> {
             itemCount: snapshot.data!.length,
             itemBuilder: ( context,  index) {
               final student=snapshot.data![index];
+              final sID=student.id;
               return ListTile(
-                leading:  Text("password : ${student.password}"),
+
+                leading:  IconButton(onPressed: ()async{
+
+                  final delete=await apiService.deleteStudent(sID!);
+                  setState(() {
+                    delete;
+                  });
+                }, icon: Icon(Icons.delete)),
                 title: Text("name : ${student.name}"),
                 subtitle: Text('email : ${student.email}'),
-                trailing:  Text("phone : ${student.phone}"),
+                trailing:  IconButton(onPressed: ()async{
+
+
+                }, icon: Icon(Icons.edit)),
 
               );
             },);
         }
 
-      },)
+      },),
+          floatingActionButton: FloatingActionButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => StudentUpdateScreen(name: 'Anjali',),));
+          },child: Icon(Icons.edit),),
     );
   }
 }
+
+

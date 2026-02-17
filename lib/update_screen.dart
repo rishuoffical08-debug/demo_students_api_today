@@ -9,6 +9,7 @@ class UpdateScreen extends StatelessWidget {
       appBar: AppBar(title: Text("Update Screen"),),
       body: Center(
         child: Text("name: $name "),
+
       ),
     );
   }

@@ -10,7 +10,6 @@ class ApiService {
       Uri.parse("$_baseUrl/allStudents"),
       headers: {"Content-Type": "application/json"},
     );
-
     if (response.statusCode == 200) {
       final body = jsonDecode(response.body);
 
@@ -48,5 +47,29 @@ class ApiService {
       throw Exception(
           "Student Not Added. Status Code: ${response.statusCode}");
     }
+  }
+
+  Future<void>  deleteStudent(int sID)async{
+    final response=await http.delete(Uri.parse("$_baseUrl/deleteStudent$sID"),);
+    if(response.statusCode==200 || response.statusCode==201){
+      print("Student Deleted Successfully");
+    }
+    else{
+      print("Student Deleted Fail");
+
+    }
+  }
+
+  Future<void> updateStudent(int sID,StudentModel newStudentModel)async{
+
+    final response=await http.put(Uri.parse("$_baseUrl/updateStudent$sID"),
+    body: jsonEncode(newStudentModel.toJson()));
+    if(response.statusCode==200 || response.statusCode==201){
+      print("Student Updated");
+    }
+    else{
+      print("Student Updated Fail");
+    }
+
   }
 }
