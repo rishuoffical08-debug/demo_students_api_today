@@ -1,14 +1,11 @@
-import 'package:demo_students_apis/all_students_screen.dart';
-import 'package:demo_students_apis/api_service.dart';
-import 'package:demo_students_apis/student_model.dart';
+import 'package:demo_students_apis/data/show_data.dart';
 import 'package:flutter/material.dart';
+import 'data/send_data_screen.dart';
 
-import 'add_screen.dart';
-
-void main()async{
-
+void main() async {
   runApp(MyApp());
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -16,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:AllStudentsScreen(),
+      home: ShowData(),
     );
   }
 }

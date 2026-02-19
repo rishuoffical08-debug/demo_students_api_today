@@ -19,7 +19,7 @@ class ApiService {
         data = body;
       } else if (body is Map) {
         data = body.values.firstWhere(
-              (value) => value is List,
+          (value) => value is List,
           orElse: () => [],
         );
       }
@@ -27,9 +27,12 @@ class ApiService {
       return data.map((e) => StudentModel.fromJson(e)).toList();
     } else {
       throw Exception(
-          "Students Fetch Issue. Status Code: ${response.statusCode}");
+        "Students Fetch Issue. Status Code: ${response.statusCode}",
+      );
     }
   }
+
+//// Add ka kam hua hai
 
   Future<void> addStudent(StudentModel studentModel) async {
     final response = await http.post(
@@ -44,32 +47,35 @@ class ApiService {
     if (response.statusCode == 200 || response.statusCode == 201) {
       print("Student Added Successfully");
     } else {
-      throw Exception(
-          "Student Not Added. Status Code: ${response.statusCode}");
+      throw Exception("Student Not Added. Status Code: ${response.statusCode}");
     }
   }
 
-  Future<void>  deleteStudent(int sID)async{
-    final response=await http.delete(Uri.parse("$_baseUrl/deleteStudent$sID"),);
-    if(response.statusCode==200 || response.statusCode==201){
+  //// Delete ka kam hua hai
+
+  Future<void> deleteStudent(int sID) async {
+    final response = await http.delete(
+      Uri.parse("$_baseUrl/deleteStudent$sID"),
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
       print("Student Deleted Successfully");
-    }
-    else{
+    } else {
       print("Student Deleted Fail");
-
     }
   }
 
-  Future<void> updateStudent(int sID,StudentModel newStudentModel)async{
+  //// Update ka kam hua hai
 
-    final response=await http.put(Uri.parse("$_baseUrl/updateStudent$sID"),
-    body: jsonEncode(newStudentModel.toJson()));
-    if(response.statusCode==200 || response.statusCode==201){
+  Future<void> updateStudent(int sID, StudentModel newStudentModel) async {
+    final response = await http.put(
+      Uri.parse("$_baseUrl/updateStudent$sID"),
+      body: jsonEncode(newStudentModel.toJson()),
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
       print("Student Updated");
-    }
-    else{
+    } else {
       print("Student Updated Fail");
     }
-
   }
+
 }

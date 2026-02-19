@@ -16,7 +16,6 @@ class _AddScreenState extends State<AddScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     TextEditingController nameController = TextEditingController();
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
@@ -127,7 +126,7 @@ class _AddScreenState extends State<AddScreen> {
               ),
 
               ElevatedButton(
-                  onPressed: () {
+                onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -144,4 +143,5 @@ class _AddScreenState extends State<AddScreen> {
     );
   }
 }
+
 //////
